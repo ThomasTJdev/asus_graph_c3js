@@ -1,0 +1,39 @@
+<script>
+
+var map, heatmap;
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 1,
+    center: {lat: 0, lng: 0},
+    mapTypeId: 'satellite'
+  });
+
+  heatmap = new google.maps.visualization.HeatmapLayer({
+    data: getPoints(),
+    map: map
+  });
+}
+
+function getPoints() {
+  return [
+    {{ heatmap_data | safe }}
+  ];
+}
+
+</script>
+
+<style>
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#map {
+  height: 100%;
+}
+</style>
+
+<div id="map"></div>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFgapTyicYti8Qxb7jizNtmry7SBxNgmg&libraries=visualization&callback=initMap"></script>
